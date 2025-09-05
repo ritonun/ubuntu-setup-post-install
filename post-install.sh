@@ -7,3 +7,6 @@ else
     log ERROR "Ending the post-install script."
     exit 1
 fi
+
+# run package install
+. scripts/10-minimum-packages.sh
