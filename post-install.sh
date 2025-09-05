@@ -1,5 +1,12 @@
 #!/bin/bash
 
+. scripts/lib.sh
+
+# parse command with user argument
+parse_commands $*
+# validate global variable value before starting the script
+validate_global_value
+
 # Ensure the computer is properly setup for the scripts
 if . scripts/00-precheck.sh; then
     log INFO "Prerequisites are completed. Continuing with scripts install."

@@ -8,6 +8,39 @@ BLUE="\e[34m"     # Info
 MAGENTA="\e[35m"  # Debug
 NC="\e[0m"        # No Color / Reset
 
+# variable
+DRY_RUN=0
+
+parse_commands() {
+    # $@ expand into a list of parameter, so we iterate other the arguments
+    for arg in "$@"; do
+
+        # check proper format of the argument: VAR=VALUE
+        if [[ $arg == *=* ]]; then
+            varname="${arg%%=*}"
+            value="${arg#*=}"
+
+            # check if the variable actually exist
+            if [[ -v $varname ]]; then
+                declare -g "$varname=$value"
+            else
+                log ERROR "Unknown variable $varname"
+                exit 1
+            fi
+        else
+            log ERROR "Invalid argument format: $arg"
+            exit 1
+        fi
+    done
+}
+
+validate_global_value() {
+    if [[ "$DRY_RUN" != "0" && "$DRY_RUN" != "1"  ]]; then
+        log ERROR "DRY_RUN can only take 0 or 1 (1=enabled)"
+        exit 1
+    fi
+}
+
 timestamp() {
      date +"%Y-%m-%d %H:%M:%S"
 }

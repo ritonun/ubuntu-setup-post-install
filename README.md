@@ -13,3 +13,8 @@ chmod +x post-install.sh
 chmod +x scripts/*.sh
 sudo ./post-install.sh
 ```
+
+## Option
+```
+sudo ./post-install DRY_RUN=1   # run a dry run
+```
