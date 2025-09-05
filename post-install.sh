@@ -7,6 +7,8 @@ parse_commands "$@"
 # validate global variable value before starting the script
 validate_global_val
 
+log DEBUG "DRY_RUN=$DRY_RUN"
+
 # Ensure the computer is properly setup for the scripts
 if . scripts/00-precheck.sh; then
     log INFO "Prerequisites are completed. Continuing with scripts install."

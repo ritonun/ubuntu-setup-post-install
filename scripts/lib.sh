@@ -61,12 +61,12 @@ log() {
     local level=$1 # assign LEVEL var from the first argument
     shift   # remove first argument, left only with "Message"
     case "$level" in
-        INFO)    echo -e "[$(timestamp)] ${BLUE}[INFO] ${NC} $*" ;;
-        WARN)    echo -e "[$(timestamp)] ${YELLOW}[WARN] $*${NC}" ;;
-        ERROR)   echo -e "[$(timestamp)] ${RED}[ERROR] $*${NC}" ;;
-        DEBUG)   echo -e "[$(timestamp)] ${MAGENTA}[DEBUG] ${NC} $*" ;;
-        SUCCESS) echo -e "[$(timestamp)] ${GREEN}[OK] $*${NC}" ;;
+        INFO)    echo -e "[$(timestamp)] ${BLUE}[INFO]${NC} $*" ;;
+        WARN)    echo -e "[$(timestamp)] ${YELLOW}[WARN]$*${NC}" ;;
+        ERROR)   echo -e "[$(timestamp)] ${RED}[ERROR]$*${NC}" ;;
+        DEBUG)   echo -e "[$(timestamp)] ${MAGENTA}[DEBUG]${NC} $*" ;;
+        SUCCESS) echo -e "[$(timestamp)] ${GREEN}[OK]$*${NC}" ;;
         DRY_RUN) echo -e "[$(timestamp)] ${CYAN}[DRY_RUN] $*${NC}" ;;
-        *)       echo -e "[$(timestamp)] [LOG] $*${NC}" ;;
+        *)       echo -e "[$(timestamp)] [LOG]$*${NC}" ;;
     esac
 }

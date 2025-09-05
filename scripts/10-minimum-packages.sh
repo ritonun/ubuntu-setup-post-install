@@ -11,6 +11,7 @@ system_update() {
 
 minimal_packages() {
     # install a minimum number of packages
+    log INFO "Install utility packages: git, curl, unzip"
     run_cmd apt install -y curl \
     git \
     unzip
