@@ -27,6 +27,23 @@ setup_flatpak() {
     run_cmd flatpak install -y org.keepassxc.KeePassXC
 }
 
+rust_install() {
+    # install rust stable branch without user interaction
+    log INFO "Install rustup"
+    run_cmd curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | run_cmd sh -s -- -y --default-toolchain stable --no-modify-path
+    # source the cargo .env file
+    run_cmd . "$HOME/.cargo/env"
+
+    log INFO "Install dependencies for cargo-generate and esp-generate"
+    run_cmd apt install -y libssl-dev
+
+    log INFO "Install cargo-generate"
+    run_cmd cargo install cargo-generate
+    log INFO "Install esp-generate"
+    run_cmd cargo install esp-generate --locked
+}
+
 system_update
 minimal_packages
 setup_flatpak
+rust_install
