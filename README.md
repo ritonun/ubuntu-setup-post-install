@@ -7,7 +7,7 @@ Custom scripts for a clean ubuntu install.
 Prerequisites: an internet connection
 ```bash
 sudo apt update && sudo apt upgrade -y
-sudo apt install git
+sudo apt install -y git
 git clone https://github.com/ritonun/ubuntu-setup-post-install
 chmod +x post-install.sh
 chmod +x scripts/*.sh
