@@ -43,7 +43,33 @@ rust_install() {
     run_cmd cargo install esp-generate --locked
 }
 
+pipx_install() {
+    log INFO "Install pipx"
+    run_cmd apt install -y pipx
+    run_cmd pipx ensurepath
+    run_cmd export PATH=/home/jerry/.local/bin:$PATH
+    run_cmd echo $PATH
+    run_cmd source ~/.bashrc
+    run_cmd source ~/.zshrc
+
+    log INFO "Install yt-dlp via pipx"
+    run_cmd pipx install yt-dlp
+}
+
+zed_install() {
+    log INFO "Install zed editor"
+    run_cmd curl -f https://zed.dev/install.sh | run_cmd sh
+}
+
+code_install() {
+    log INFO "Install snap VsCode"
+    run_cmd snap install --classic code
+}
+
 system_update
 minimal_packages
 setup_flatpak
 rust_install
+pipx_install
+zed_install
+code_install
