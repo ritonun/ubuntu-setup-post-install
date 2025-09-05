@@ -5,7 +5,7 @@
 # parse command with user argument
 parse_commands "$@"
 # validate global variable value before starting the script
-validate_global_val
+validate_global_value
 
 log DEBUG "DRY_RUN=$DRY_RUN"
 
