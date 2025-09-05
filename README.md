@@ -11,5 +11,5 @@ sudo apt install git
 git clone https://github.com/ritonun/ubuntu-setup-post-install
 chmod +x post-install.sh
 chmod +x scripts/*.sh
-./post-install.sh
+sudo ./post-install.sh
 ```
