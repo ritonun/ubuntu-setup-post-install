@@ -6,6 +6,7 @@ GREEN="\e[32m"    # Success
 YELLOW="\e[33m"   # Warning
 BLUE="\e[34m"     # Info
 MAGENTA="\e[35m"  # Debug
+CYAN="\e[36m"     # Dry Run
 NC="\e[0m"        # No Color / Reset
 
 # variable
@@ -41,6 +42,16 @@ validate_global_value() {
     fi
 }
 
+run_cmd() {
+    if [[ $DRY_RUN -eq 1 ]]; then
+        log DRY_RUN "$*"
+        return 0
+    else
+        log INFO "Executing: $*"
+        "$@"
+    fi
+}
+
 timestamp() {
      date +"%Y-%m-%d %H:%M:%S"
 }
@@ -55,6 +66,7 @@ log() {
         ERROR)   echo -e "[$(timestamp)] ${RED}[ERROR] $*${NC}" ;;
         DEBUG)   echo -e "[$(timestamp)] ${MAGENTA}[DEBUG] ${NC} $*" ;;
         SUCCESS) echo -e "[$(timestamp)] ${GREEN}[OK] $*${NC}" ;;
+        DRY_RUN) echo -e "[$(timestamp)] ${CYAN}[DRY_RUN] $*${NC}" ;;
         *)       echo -e "[$(timestamp)] [LOG] $*${NC}" ;;
     esac
 }

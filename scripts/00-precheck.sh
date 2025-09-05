@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# load library function and var
-. scripts/lib.sh
-
 check_script_run_with_sudo() {
     # check the script is run with the sudo command
     # if the user is root, $EUID should be 0
@@ -14,7 +11,7 @@ check_script_run_with_sudo() {
 
 check_internet() {
     # check internet connection by pinging cloudflare dns (1.1.1.1) and google dns (8.8.8.8)
-    if ping -c 1 -w 1 8.8.8.8 &> /dev/null || ping -c 1 -w 1 1.1.1.1 &> /dev/null; then
+    if run_cmd ping -c 1 -w 1 8.8.8.8 &> /dev/null || run_cmd ping -c 1 -w 1 1.1.1.1 &> /dev/null; then
         log INFO "Internet check: OK"
     else
         log ERROR "No internet connection. An internet connection is necessary to run the script."

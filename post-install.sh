@@ -3,9 +3,9 @@
 . scripts/lib.sh
 
 # parse command with user argument
-parse_commands $*
+parse_commands "$@"
 # validate global variable value before starting the script
-validate_global_value
+validate_global_val
 
 # Ensure the computer is properly setup for the scripts
 if . scripts/00-precheck.sh; then
