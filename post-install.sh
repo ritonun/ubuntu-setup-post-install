@@ -19,3 +19,6 @@ fi
 
 # run package install
 . scripts/10-minimum-packages.sh
+
+# cleanup installation
+. scripts/90-cleanup.sh
