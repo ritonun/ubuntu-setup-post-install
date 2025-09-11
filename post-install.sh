@@ -20,5 +20,8 @@ fi
 # run package install
 . scripts/10-minimum-packages.sh
 
+# install extension
+. scripts/30-gnome.sh
+
 # cleanup installation
 . scripts/90-cleanup.sh
