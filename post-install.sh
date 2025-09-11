@@ -20,6 +20,9 @@ fi
 # run package install
 . scripts/10-minimum-packages.sh
 
+# ubuntu settings & dotfiles
+. scripts/20-settings.sh
+
 # install extension
 . scripts/30-gnome.sh
 
