@@ -1,3 +1,4 @@
+#!/bin/bash
 
 oh_my_zsh() {
     log INFO "Install zsh"
