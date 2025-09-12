@@ -32,4 +32,17 @@ install_gnome_extension() {
     run_cmd gext enable dash-to-dock@micxgx.gmail.com
 }
 
+install_nemo_file_manager() {
+    log INFO "Install nemo as file manager"
+    run_cmd apt install -y nemo gnome-shell-extension-manager
+    run_cmd gext disable ding@rastersoft.com
+    run_cmd xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
+    run_cmd gsettings set org.nemo.desktop show-desktop-icons true
+    log INFO "Add nemo-desktop to startup"
+    AUTOSTART_DIR="$HOME/.config/autostart"
+    run_cmd mkdir -p $AUTOSTART_DIR
+    run_cmd cp config/nemo-desktop "$HOME/.config/autostart"
+}
+
 install_gnome_extension
+install_nemo_file_manager

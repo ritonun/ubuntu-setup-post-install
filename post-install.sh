@@ -26,5 +26,11 @@ fi
 # install extension
 . scripts/30-gnome.sh
 
+# install shell
+. scripts/40-shell.sh
+
+# install apps
+. scripts/50-apps.sh
+
 # cleanup installation
 . scripts/90-cleanup.sh
