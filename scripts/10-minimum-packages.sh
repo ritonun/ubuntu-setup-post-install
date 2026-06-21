@@ -80,7 +80,7 @@ full_flatpak_install() {
     log INFO "Install Brave"
     run_cmd flatpak install -y com.brave.Browser
     log INFO "Install Minecraft"
-    run_cmd flatpak install -y com.mojang.
+    run_cmd flatpak install -y com.mojang.Minecraft
     log INFO "Install PokeMMO"
     run_cmd flatpak install -y com.pokemmo.PokeMMO
     log INFO "Install KiCad"
