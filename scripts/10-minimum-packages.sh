@@ -72,6 +72,27 @@ code_install() {
     run_cmd snap install --classic code
 }
 
+full_flatpak_install() {
+    log INFO "Install ArduinoIDE v2"
+    run_cmd flatpak install -y cc.arduino.IDE2
+    log INFO "Install Brave"
+    run_cmd flatpak install -y com.brave.Browser
+    log INFO "Install Minecraft"
+    run_cmd flatpak install -y com.mojang.
+    log INFO "Install PokeMMO"
+    run_cmd flatpak install -y com.pokemmo.PokeMMO
+    log INFO "Install KiCad"
+    run_cmd flatpak install -y org.kicad.KiCad
+    log INFO "Install FreeCAD"
+    run_cmd flatpak install -y org.freecad.FreeCAD
+    log INFO "Install Document Scanner"
+    run_cmd flatpak install -y org.gnome.SimpleScan
+    log INFO "Install Okular"
+    run_cmd flatpak install -y org.kde.okular
+    log INFO "Install qBittorrent"
+    run_cmd flatpak install -y org.qbittorrent.qBittorrent
+}
+
 system_update
 minimal_packages
 setup_flatpak
@@ -79,3 +100,4 @@ rust_install
 pipx_install
 zed_install
 code_install
+full_flatpak_install
