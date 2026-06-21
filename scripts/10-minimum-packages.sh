@@ -1,55 +1,57 @@
 #!/bin/bash
 
+# supress apt config prompts
+export DEBIAN_FRONTEND=noninteractive
+
 system_update() {
     # perfom system update if not already done
     log INFO "System update via apt"
-    run_cmd apt update
-    run_cmd apt upgrade -y
+    run_sudo apt update
+    run_sudo apt upgrade -y
     log INFO "Snap refresh"
-    run_cmd snap refresh
+    run_sudo snap refresh
 }
 
 minimal_packages() {
     # install a minimum number of packages
     log INFO "Install utility packages: git, curl, unzip"
-    run_cmd apt install -y curl \
-    git \
-    unzip
+    run_sudo apt install -y curl git unzip
 }
 
 setup_flatpak() {
     log INFO "Setup flatpak"
-    run_cmd apt install -y flatpak gnome-software-plugin-flatpak
-    run_cmd flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    run_sudo apt install -y flatpak gnome-software-plugin-flatpak
+    run_sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     log INFO "Install obsidian"
-    run_cmd flatpak install -y md.obsidian.Obsidian
+    run_sudo flatpak install -y flathub md.obsidian.Obsidian
     log INFO "Install KeePassXC"
-    run_cmd flatpak install -y org.keepassxc.KeePassXC
+    run_sudo flatpak install -y flathub org.keepassxc.KeePassXC
 }
 
 rust_install() {
     # install rust stable branch without user interaction
     log INFO "Install rustup"
-    run_cmd curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | run_cmd sh -s -- -y --default-toolchain stable --no-modify-path
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | run_cmd sh -s -- -y --default-toolchain stable --no-modify-path
     # source the cargo .env file
-    run_cmd . "$HOME/.cargo/env"
+    . "$HOME/.cargo/env"
 
     log INFO "Install dependencies for cargo-generate and esp-generate"
-    run_cmd apt install -y libssl-dev
+    run_sudo apt install -y libssl-dev
 
     log INFO "Install cargo-generate"
     run_cmd cargo install cargo-generate
     log INFO "Install esp-generate"
     run_cmd cargo install esp-generate --locked
     log INFO "Install cargo-binstall"
-    run_cmd curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+    curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 }
 
 pipx_install() {
     log INFO "Install pipx"
-    run_cmd apt install -y pipx
+    run_sudo apt install -y pipx
     run_cmd pipx ensurepath
-    run_cmd export PATH=/home/jerry/.local/bin:$PATH
+
+    export PATH=/home/jerry/.local/bin:$PATH
     run_cmd echo $PATH
     run_cmd source ~/.bashrc
     run_cmd source ~/.zshrc
@@ -76,25 +78,25 @@ code_install() {
 
 full_flatpak_install() {
     log INFO "Install ArduinoIDE v2"
-    run_cmd flatpak install -y cc.arduino.IDE2
+    run_sudo flatpak install -y flathub cc.arduino.IDE2
     log INFO "Install Brave"
-    run_cmd flatpak install -y com.brave.Browser
+    run_sudo flatpak install -y flathub com.brave.Browser
     log INFO "Install Minecraft"
-    run_cmd flatpak install -y com.mojang.Minecraft
+    run_sudo flatpak install -y flathub com.mojang.Minecraft
     log INFO "Install PokeMMO"
-    run_cmd flatpak install -y com.pokemmo.PokeMMO
+    run_sudo flatpak install -y flathub com.pokemmo.PokeMMO
     log INFO "Install KiCad"
-    run_cmd flatpak install -y org.kicad.KiCad
+    run_sudo flatpak install -y flathub org.kicad.KiCad
     log INFO "Install FreeCAD"
-    run_cmd flatpak install -y org.freecad.FreeCAD
+    run_sudo flatpak install -y flathub org.freecad.FreeCAD
     log INFO "Install Document Scanner"
-    run_cmd flatpak install -y org.gnome.SimpleScan
+    run_sudo flatpak install -y flathub org.gnome.SimpleScan
     log INFO "Install Okular"
-    run_cmd flatpak install -y org.kde.okular
+    run_sudo flatpak install -y flathub org.kde.okular
     log INFO "Install qBittorrent"
-    run_cmd flatpak install -y org.qbittorrent.qBittorrent
+    run_sudo flatpak install -y flathub org.qbittorrent.qBittorrent
     log INFO "Install LocalSend"
-    run_cmd flatpak install -y org.localsend.localsend_app
+    run_sudo flatpak install -y flathub org.localsend.localsend_app
 }
 
 full_package_install() {

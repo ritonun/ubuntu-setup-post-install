@@ -28,10 +28,10 @@ ubuntu_settings() {
     run_cmd gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
     log INFO "Activate firewall"
-    run_cmd ufw enable
+    run_sudo ufw enable
     log INFO "Allow port 22 (ssh)"
-    run_cmd ufw allow 22
-    run_cmd ufw reload
+    run_sudo ufw allow 22
+    run_sudo ufw reload
 
     log INFO "Set the first day of the calendar as Monday"
     run_cmd echo 'LC_TIME="en_IE.UTF-8"' >> /etc/default/locale
