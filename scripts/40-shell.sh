@@ -20,3 +20,14 @@ oh_my_zsh() {
         run_cmd git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
     fi
 }
+
+alacritty() {
+    log INFO "Install alacritty terminal"
+    run_cmd apt install -y alacritty
+    log INFO "Setup alacritty theme"
+    local dst_dir="$HOME/.config/alacritty"
+    run_cmd cp -r "conf/alacritty" "$dst_dir"
+}
+
+oh_my_zsh
+alacritty
