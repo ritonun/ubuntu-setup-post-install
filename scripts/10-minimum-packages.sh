@@ -91,6 +91,8 @@ full_flatpak_install() {
     run_cmd flatpak install -y org.kde.okular
     log INFO "Install qBittorrent"
     run_cmd flatpak install -y org.qbittorrent.qBittorrent
+    log INFO "Install LocalSend"
+    run_cmd flatpak install -y org.localsend.localsend_app
 }
 
 full_package_install() {
