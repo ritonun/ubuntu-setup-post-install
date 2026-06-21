@@ -13,6 +13,7 @@ parse_commands "$@"
 validate_global_value
 
 log DEBUG "DRY_RUN=$DRY_RUN"
+log SBS "SBS=$SBS"
 
 # Ensure the computer is properly setup for the scripts
 if . scripts/00-precheck.sh; then

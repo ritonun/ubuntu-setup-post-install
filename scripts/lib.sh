@@ -11,6 +11,7 @@ NC="\e[0m"        # No Color / Reset
 
 # variable
 DRY_RUN=0
+SBS=0
 
 parse_commands() {
     # $@ expand into a list of parameter, so we iterate other the arguments
@@ -43,13 +44,37 @@ validate_global_value() {
 }
 
 run_cmd() {
+    if [[ $SBS -eq 1 ]]; then
+        while true; do
+            echo
+            echo "cmd: $*"
+            read -rp "[y] run, [s] skip, [q] quit: " ans
+            case "$ans" in
+                y|Y)
+                    break
+                    ;;
+                s|S)
+                    log INFO "Skipped: $*"
+                    return 0
+                    ;;
+                q|Q)
+                    log INFO "Aborted by user"
+                    exit 1
+                    ;;
+                *)
+                    echo "Please enter y, s, or q."
+                    ;;
+            esac
+        done
+    fi
+
     if [[ $DRY_RUN -eq 1 ]]; then
         log DRY_RUN "$*"
         return 0
-    else
-        log INFO "Executing: $*"
-        "$@"
     fi
+
+    log INFO "Executing: $*"
+    "$@"
 }
 
 timestamp() {
