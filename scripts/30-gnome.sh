@@ -48,5 +48,15 @@ install_nemo_file_manager() {
     run_cmd cp config/nemo-desktop "$HOME/.config/autostart"
 }
 
+apply_app_config() {
+    log INFO "Apply config to Text Editor"
+    run_cmd dconf load /org/gnome/Texteditor/ < conf/TextEditor.conf
+    log INFO "Apply config to desktop"
+    run_cmd dconf load /org/gnome/desktop/ < conf/desktop-interface.conf
+    log INFO "Apply config to nautilus"
+    run_cmd dconf load /org/gnome/nautilus/ < conf/nautilus.conf
+}
+
 install_gnome_extension
+apply_app_config
 # install_nemo_file_manager
