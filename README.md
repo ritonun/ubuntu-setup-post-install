@@ -19,3 +19,6 @@ sudo ./post-install.sh
 ```
 sudo ./post-install.sh DRY_RUN=1   # run a dry run
 ```
+```
+sudo ./post-install.sh SBS=1  # run step by step
+```
