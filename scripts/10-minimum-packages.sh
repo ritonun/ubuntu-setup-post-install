@@ -54,6 +54,12 @@ pipx_install() {
 
     log INFO "Install yt-dlp via pipx"
     run_cmd pipx install yt-dlp
+
+    log INFO "Install uv with pipx"
+    run_cmd pipx install uv
+
+    log INFO "Install ytpu with pipx"
+    run_cmd pipx install ytpu
 }
 
 zed_install() {
