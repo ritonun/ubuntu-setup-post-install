@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# global logging to a file
+LOG_FILE="script.log"
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+# call lib
 . scripts/lib.sh
 
 # parse command with user argument
