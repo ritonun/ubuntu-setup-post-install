@@ -1,0 +1,13 @@
+[keyboard]
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control"
+
+[general]
+import = [
+  # "/home/jerry/.config/alacritty/catppuccin-mocha.toml"
+  "~/.config/alacritty/dracula.toml"
+  # "~/.config/alacritty/autumn.toml"
+]
