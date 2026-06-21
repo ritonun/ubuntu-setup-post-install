@@ -8,6 +8,7 @@ Prerequisites: an internet connection
 It is recommended to first update the distro:
 ```bash
 sudo apt update && sudo apt upgrade -y
+sudo apt autoremove
 sudo snap refresh
 sudo reboot
 ```
