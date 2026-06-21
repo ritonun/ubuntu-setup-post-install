@@ -7,6 +7,9 @@ oh_my_zsh() {
     run_cmd touch "$HOME/.zshrc"
     run_cmd apt install zsh -y
 
+    # ensure file exist
+    run_cmd cp "conf/.zshrc" "$HOME"
+
     run_cmd sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
