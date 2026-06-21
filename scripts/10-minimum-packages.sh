@@ -93,6 +93,43 @@ full_flatpak_install() {
     run_cmd flatpak install -y org.qbittorrent.qBittorrent
 }
 
+full_package_install() {
+    log INFO "Install app/utility packages"
+    run_cmd apt install -y 7zip \
+    7zip \
+    aria2 \
+    code \
+    curseforge \
+    fastfetch \
+    ffmpeg \
+    ffmpegthumbnailer \
+    flatpak \
+    gh \
+    git \
+    handbrake-cli \
+    htop \
+    libreoffice \
+    pipx \
+    syncthing \
+    unrar \
+    unzip \
+    vlc \
+    wget
+
+    log INFO "Install dev packages"
+    run_cmd apt install -y build-essential \
+    g++ \
+    cmake \
+    pkg-config \
+    clang \
+    libclang-dev \
+    lld \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    libsdl12-dev \
+    python3-dev
+}
+
 system_update
 minimal_packages
 setup_flatpak
@@ -101,3 +138,4 @@ pipx_install
 zed_install
 code_install
 full_flatpak_install
+full_package_install
