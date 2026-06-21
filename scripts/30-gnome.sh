@@ -45,4 +45,4 @@ install_nemo_file_manager() {
 }
 
 install_gnome_extension
-install_nemo_file_manager
+# install_nemo_file_manager
