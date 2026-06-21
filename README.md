@@ -9,6 +9,7 @@ Prerequisites: an internet connection
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y git
 git clone https://github.com/ritonun/ubuntu-setup-post-install
+cd ubuntu-setup-post-install
 chmod +x post-install.sh
 chmod +x scripts/*.sh
 sudo ./post-install.sh
