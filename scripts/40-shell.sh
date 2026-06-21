@@ -32,5 +32,19 @@ alacritty() {
     run_cmd cp -r "conf/alacritty" "$dst_dir"
 }
 
+yazi_file_explorer() {
+    log INFO "Install yazi dependencies"
+    run_cmd apt install -y jq \
+    poppler-utils \
+    fd-find \
+    ripgrep \
+    fzf \
+    zoxide \
+    resvg
+    log INFO "Install yazi with binstall"
+    run_cmd cargo binstall yazi-fm
+}
+
 oh_my_zsh
 alacritty
+yazi_file_explorer

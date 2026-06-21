@@ -41,6 +41,8 @@ rust_install() {
     run_cmd cargo install cargo-generate
     log INFO "Install esp-generate"
     run_cmd cargo install esp-generate --locked
+    log INFO "Install cargo-binstall"
+    run_cmd curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 }
 
 pipx_install() {
