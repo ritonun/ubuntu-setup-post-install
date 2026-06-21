@@ -22,6 +22,16 @@ oh_my_zsh() {
     if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
         run_cmd git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
     fi
+
+    # Install power10k theme
+    if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
+        run_cmd git clone --depth=1 \
+            https://github.com/romkatv/powerlevel10k.git \
+            "$ZSH_CUSTOM/themes/powerlevel10k"
+    fi
+
+    # ensure file exist
+    run_cmd cp "conf/.p10k.zsh" "$HOME"
 }
 
 alacritty() {
