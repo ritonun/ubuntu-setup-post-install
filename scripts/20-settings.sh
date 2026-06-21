@@ -34,7 +34,7 @@ ubuntu_settings() {
     run_sudo ufw reload
 
     log INFO "Set the first day of the calendar as Monday"
-    run_cmd echo 'LC_TIME="en_IE.UTF-8"' >> /etc/default/locale
+    run_sudo bash -c 'echo "LC_TIME=\"en_IE.UTF-8\"" >> /etc/default/locale'
 
     log INFO "Add templates document: text.txt, doc.odt"
     add_templates_documents
