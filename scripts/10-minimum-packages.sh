@@ -136,10 +136,10 @@ full_package_install() {
 
 system_update
 minimal_packages
+full_package_install
 setup_flatpak
 rust_install
 pipx_install
 zed_install
 code_install
 full_flatpak_install
-full_package_install
