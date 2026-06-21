@@ -52,7 +52,7 @@ yazi_file_explorer() {
     zoxide \
     resvg
     log INFO "Install yazi with binstall"
-    run_cmd cargo binstall yazi-fm
+    run_cmd cargo binstall -y yazi-fm
 }
 
 oh_my_zsh
