@@ -5,6 +5,13 @@ Custom scripts for a clean ubuntu install.
 
 ## Run the scripts
 Prerequisites: an internet connection
+It is recommended to first update the distro:
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo snap refresh
+sudo reboot
+```
+
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install -y git
