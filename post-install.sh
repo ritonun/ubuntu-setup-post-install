@@ -25,15 +25,20 @@ fi
 
 # run package install
 . scripts/10-minimum-packages.sh
+confirm
 
 # ubuntu settings & dotfiles
 . scripts/20-settings.sh
+confirm
 
 # install extension
 . scripts/30-gnome.sh
+confirm
 
 # install shell
 . scripts/40-shell.sh
+confirm
 
 # cleanup installation
 . scripts/90-cleanup.sh
+confirm

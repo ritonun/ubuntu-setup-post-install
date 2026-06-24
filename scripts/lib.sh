@@ -95,3 +95,9 @@ log() {
         *)       echo -e "[$(timestamp)] [LOG]$*${NC}" ;;
     esac
 }
+
+confirm() {
+    echo "$1"
+    read -rp "Do you want to continue? (y/n): " ans
+    [[ "$ans" =~ ^[Yy]$ ]]
+}
