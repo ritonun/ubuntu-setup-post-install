@@ -33,6 +33,11 @@ oh_my_zsh() {
     run_cmd git clone --depth=1 \
         https://github.com/romkatv/powerlevel10k.git \
         "$ZSH_CUSTOM/themes/powerlevel10k"
+
+    # make sh default shell
+    TARGET_USER="${SUDO_USER:-$USER}"
+    ZSH_PATH="$(command -v zsh)"
+    run_cmd usermod -s "$ZSH_PATH" "$TARGET_USER"
 }
 
 alacritty() {
