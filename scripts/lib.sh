@@ -73,8 +73,20 @@ run_cmd() {
         return 0
     fi
 
+    local start=$(date +%s)
+
     log INFO "Executing: $*"
-    "$@"
+    if "$@"; then
+        local rc=0
+        local elapsed=$(( $(date +%s) - start ))
+        log SUCCESS "Succeeded (${elapsed}s): $*"
+        return 0
+    else
+        local rc=$?
+        local elapsed=$(( $(date +%s) - start ))
+        log ERROR "Failed (rc=$rc, ${elapsed}s): $*"
+        return "$rc"
+    fi
 }
 
 timestamp() {
