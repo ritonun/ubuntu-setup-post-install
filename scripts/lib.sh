@@ -47,12 +47,13 @@ run_cmd() {
     if [[ $SBS -eq 1 ]]; then
         while true; do
             echo
-            echo "cmd: $*"
-            read -rp "[y] run, [s] skip, [q] quit: " ans
+            echo "CMD:"
+            printf ' %q ' "$@"
+            echo
+            read -rp "[y] run, [s] skip, [q] quit: " ans < /dev/tty
+
             case "$ans" in
-                y|Y)
-                    break
-                    ;;
+                y|Y) break ;;
                 s|S)
                     log INFO "Skipped: $*"
                     return 0
