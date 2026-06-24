@@ -6,26 +6,26 @@ export DEBIAN_FRONTEND=noninteractive
 system_update() {
     # perfom system update if not already done
     log INFO "System update via apt"
-    run_sudo apt update
-    run_sudo apt upgrade -y
+    run_cmd apt update
+    run_cmd apt upgrade -y
     log INFO "Snap refresh"
-    run_sudo snap refresh
+    run_cmd snap refresh
 }
 
 minimal_packages() {
     # install a minimum number of packages
     log INFO "Install utility packages: git, curl, unzip"
-    run_sudo apt install -y curl git unzip
+    run_cmd apt install -y curl git unzip
 }
 
 setup_flatpak() {
     log INFO "Setup flatpak"
-    run_sudo apt install -y flatpak gnome-software-plugin-flatpak
-    run_sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    run_cmd apt install -y flatpak gnome-software-plugin-flatpak
+    run_cmd flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     log INFO "Install obsidian"
-    run_sudo flatpak install -y flathub md.obsidian.Obsidian
+    run_cmd flatpak install -y flathub md.obsidian.Obsidian
     log INFO "Install KeePassXC"
-    run_sudo flatpak install -y flathub org.keepassxc.KeePassXC
+    run_cmd flatpak install -y flathub org.keepassxc.KeePassXC
 }
 
 rust_install() {
@@ -36,7 +36,7 @@ rust_install() {
     . "$HOME/.cargo/env"
 
     log INFO "Install dependencies for cargo-generate and esp-generate"
-    run_sudo apt install -y libssl-dev
+    run_cmd apt install -y libssl-dev
 
     log INFO "Install cargo-generate"
     run_cmd cargo install cargo-generate
@@ -48,7 +48,7 @@ rust_install() {
 
 pipx_install() {
     log INFO "Install pipx"
-    run_sudo apt install -y pipx
+    run_cmd apt install -y pipx
     run_cmd pipx ensurepath
 
     export PATH=/home/jerry/.local/bin:$PATH
@@ -78,25 +78,25 @@ code_install() {
 
 full_flatpak_install() {
     log INFO "Install ArduinoIDE v2"
-    run_sudo flatpak install -y flathub cc.arduino.IDE2
+    run_cmd flatpak install -y flathub cc.arduino.IDE2
     log INFO "Install Brave"
-    run_sudo flatpak install -y flathub com.brave.Browser
+    run_cmd flatpak install -y flathub com.brave.Browser
     log INFO "Install Minecraft"
-    run_sudo flatpak install -y flathub com.mojang.Minecraft
+    run_cmd flatpak install -y flathub com.mojang.Minecraft
     log INFO "Install PokeMMO"
-    run_sudo flatpak install -y flathub com.pokemmo.PokeMMO
+    run_cmd flatpak install -y flathub com.pokemmo.PokeMMO
     log INFO "Install KiCad"
-    run_sudo flatpak install -y flathub org.kicad.KiCad
+    run_cmd flatpak install -y flathub org.kicad.KiCad
     log INFO "Install FreeCAD"
-    run_sudo flatpak install -y flathub org.freecad.FreeCAD
+    run_cmd flatpak install -y flathub org.freecad.FreeCAD
     log INFO "Install Document Scanner"
-    run_sudo flatpak install -y flathub org.gnome.SimpleScan
+    run_cmd flatpak install -y flathub org.gnome.SimpleScan
     log INFO "Install Okular"
-    run_sudo flatpak install -y flathub org.kde.okular
+    run_cmd flatpak install -y flathub org.kde.okular
     log INFO "Install qBittorrent"
-    run_sudo flatpak install -y flathub org.qbittorrent.qBittorrent
+    run_cmd flatpak install -y flathub org.qbittorrent.qBittorrent
     log INFO "Install LocalSend"
-    run_sudo flatpak install -y flathub org.localsend.localsend_app
+    run_cmd flatpak install -y flathub org.localsend.localsend_app
 }
 
 full_package_install() {

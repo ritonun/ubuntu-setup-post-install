@@ -36,6 +36,7 @@ check_internet() {
     fi
 }
 
-check_not_root
-ask_sudo_password
+# check_not_root
+# ask_sudo_password
+check_script_run_with_sudo
 check_internet

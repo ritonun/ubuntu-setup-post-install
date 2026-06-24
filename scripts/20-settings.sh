@@ -28,13 +28,13 @@ ubuntu_settings() {
     run_cmd gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
     log INFO "Activate firewall"
-    run_sudo ufw enable
+    run_cmd ufw enable
     log INFO "Allow port 22 (ssh)"
-    run_sudo ufw allow 22
-    run_sudo ufw reload
+    run_cmd ufw allow 22
+    run_cmd ufw reload
 
     log INFO "Set the first day of the calendar as Monday"
-    run_sudo bash -c 'echo "LC_TIME=\"en_IE.UTF-8\"" >> /etc/default/locale'
+    run_cmd bash -c 'echo "LC_TIME=\"en_IE.UTF-8\"" >> /etc/default/locale'
 
     log INFO "Add templates document: text.txt, doc.odt"
     add_templates_documents

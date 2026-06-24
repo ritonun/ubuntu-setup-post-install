@@ -43,40 +43,6 @@ validate_global_value() {
     fi
 }
 
-run_sudo() {
-    if [[ $SBS -eq 1 ]]; then
-        while true; do
-            echo
-            echo "cmd: sudo $*"
-            read -rp "[y] run, [s] skip, [q] quit: " ans
-            case "$ans" in
-                y|Y)
-                    break
-                    ;;
-                s|S)
-                    log INFO "Skipped: $*"
-                    return 0
-                    ;;
-                q|Q)
-                    log INFO "Aborted by user"
-                    exit 1
-                    ;;
-                *)
-                    echo "Please enter y, s, or q."
-                    ;;
-            esac
-        done
-    fi
-
-    if [[ $DRY_RUN -eq 1 ]]; then
-        log DRY_RUN "sudo $*"
-        return 0
-    fi
-
-    log INFO "Executing as root: $*"
-    "$@"
-}
-
 run_cmd() {
     if [[ $SBS -eq 1 ]]; then
         while true; do
