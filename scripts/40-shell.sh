@@ -1,37 +1,38 @@
 #!/bin/bash
 
 oh_my_zsh() {
-    log INFO "Install zsh"
+    log INFO "Install Zsh + Oh My ZSH"
     export RUNZSH=no
     export CHSH=no
-    run_cmd touch "$HOME/.zshrc"
+
     run_cmd apt install zsh -y
+    run_cmd test -f "$HOME/.zshrc" || touch "$HOME/.zshrc"
 
     # ensure file exist
     run_cmd cp "conf/.zshrc" "$HOME"
+    run_cmd cp "conf/.p10k.zsh" "$HOME/.p10k.zsh"
 
-    run_cmd sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+        log INFO "Installing oh-my-zsh"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    fi
 
+    ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
     # Install zsh-autosuggestions
-    if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
-        run_cmd git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-    fi
+    run_cmd git clone \
+    https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" \
+    || true
 
     # Install zsh-syntax-highlighting
-    if [ ! -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ]; then
-        run_cmd git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-    fi
+    run_cmd git clone \
+    https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" \
+    || true
 
     # Install power10k theme
-    if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
-        run_cmd git clone --depth=1 \
-            https://github.com/romkatv/powerlevel10k.git \
-            "$ZSH_CUSTOM/themes/powerlevel10k"
-    fi
-
-    # ensure file exist
-    run_cmd cp "conf/.p10k.zsh" "$HOME"
+    run_cmd git clone --depth=1 \
+        https://github.com/romkatv/powerlevel10k.git \
+        "$ZSH_CUSTOM/themes/powerlevel10k"
 }
 
 alacritty() {
