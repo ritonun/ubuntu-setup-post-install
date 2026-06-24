@@ -82,18 +82,34 @@ timestamp() {
 }
 
 log() {
-    # called like: LOG LEVEL "Message"
-    local level=$1 # assign LEVEL var from the first argument
-    shift   # remove first argument, left only with "Message"
+    local level=$1
+    shift
+
+    local msg
+
     case "$level" in
-        INFO)    echo -e "[$(timestamp)] ${BLUE}[INFO]${NC} $*" ;;
-        WARN)    echo -e "[$(timestamp)] ${YELLOW}[WARN]$*${NC}" ;;
-        ERROR)   echo -e "[$(timestamp)] ${RED}[ERROR]$*${NC}" ;;
-        DEBUG)   echo -e "[$(timestamp)] ${MAGENTA}[DEBUG]${NC} $*" ;;
-        SUCCESS) echo -e "[$(timestamp)] ${GREEN}[OK]$*${NC}" ;;
-        DRY_RUN) echo -e "[$(timestamp)] ${CYAN}[DRY_RUN] $*${NC}" ;;
-        *)       echo -e "[$(timestamp)] [LOG]$*${NC}" ;;
+        INFO)    msg="[$(timestamp)] [INFO] $*" ;;
+        WARN)    msg="[$(timestamp)] [WARN] $*" ;;
+        ERROR)   msg="[$(timestamp)] [ERROR] $*" ;;
+        DEBUG)   msg="[$(timestamp)] [DEBUG] $*" ;;
+        SUCCESS) msg="[$(timestamp)] [OK] $*" ;;
+        DRY_RUN) msg="[$(timestamp)] [DRY_RUN] $*" ;;
+        *)       msg="[$(timestamp)] [LOG] $*" ;;
     esac
+
+    # Colored output to terminal/full-output.log
+    case "$level" in
+        INFO)    echo -e "${BLUE}${msg}${NC}" ;;
+        WARN)    echo -e "${YELLOW}${msg}${NC}" ;;
+        ERROR)   echo -e "${RED}${msg}${NC}" ;;
+        DEBUG)   echo -e "${MAGENTA}${msg}${NC}" ;;
+        SUCCESS) echo -e "${GREEN}${msg}${NC}" ;;
+        DRY_RUN) echo -e "${CYAN}${msg}${NC}" ;;
+        *)       echo -e "$msg" ;;
+    esac
+
+    # Plain text to script.log
+    echo "$msg" >&3
 }
 
 confirm() {

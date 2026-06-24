@@ -1,8 +1,12 @@
 #!/bin/bash
 
-# global logging to a file
+# Full transcript (everything)
+FULL_LOG="full-output.log"
+exec > >(tee -a "$FULL_LOG") 2>&1
+
+# Structured application log
 LOG_FILE="script.log"
-exec > >(tee -a "$LOG_FILE") 2>&1
+exec 3>>"$LOG_FILE"
 
 # call lib
 . scripts/lib.sh
