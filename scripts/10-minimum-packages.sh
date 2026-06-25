@@ -124,6 +124,8 @@ full_package_install() {
     lld \
     python3-dev \
     libgl1-mesa-dev
+
+    hash -r
 }
 
 vscode_install() {
