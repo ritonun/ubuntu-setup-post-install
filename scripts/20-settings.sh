@@ -1,7 +1,7 @@
 #!/bin/bash
 
 add_templates_documents() {
-    TEMPLATES_DIR="$HOME/Templates"
+    TEMPLATES_DIR="$TARGET_HOME/Templates"
     run_cmd echo "TEMPLATES PATH: $TEMPLATES_DIR"
     # Create the text.txt file in Templates if it doesn't already exist
     if [ ! -f "$TEMPLATES_DIR/text.txt" ]; then

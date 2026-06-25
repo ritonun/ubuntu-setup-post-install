@@ -33,7 +33,7 @@ rust_install() {
     log INFO "Install rustup"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | run_cmd sh -s -- -y --default-toolchain stable --no-modify-path
     # source the cargo .env file
-    . "$HOME/.cargo/env"
+    . "$TARGET_HOME/.cargo/env"
 
     log INFO "Install dependencies for cargo-generate and esp-generate"
     run_cmd apt install -y libssl-dev

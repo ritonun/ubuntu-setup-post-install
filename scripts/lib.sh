@@ -13,6 +13,9 @@ NC="\e[0m"        # No Color / Reset
 DRY_RUN=0
 SBS=0
 
+TARGET_USER="${SUDO_USER:-$USER}"
+TARGET_HOME="$(eval echo ~"$TARGET_USER")"
+
 parse_commands() {
     # $@ expand into a list of parameter, so we iterate other the arguments
     for arg in "$@"; do

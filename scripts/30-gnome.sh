@@ -43,9 +43,9 @@ install_nemo_file_manager() {
     run_cmd xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
     run_cmd gsettings set org.nemo.desktop show-desktop-icons true
     log INFO "Add nemo-desktop to startup"
-    AUTOSTART_DIR="$HOME/.config/autostart"
+    AUTOSTART_DIR="$TARGET_HOME/.config/autostart"
     run_cmd mkdir -p $AUTOSTART_DIR
-    run_cmd cp config/nemo-desktop "$HOME/.config/autostart"
+    run_cmd cp config/nemo-desktop "$TARGET_HOME/.config/autostart"
 }
 
 apply_app_config() {

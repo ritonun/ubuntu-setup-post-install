@@ -6,18 +6,18 @@ oh_my_zsh() {
     export CHSH=no
 
     run_cmd apt install zsh -y
-    run_cmd test -f "$HOME/.zshrc" || touch "$HOME/.zshrc"
+    run_cmd test -f "$TARGET_HOME/.zshrc" || touch "$TARGET_HOME/.zshrc"
 
     # ensure file exist
-    run_cmd cp "conf/.zshrc" "$HOME"
-    run_cmd cp "conf/.p10k.zsh" "$HOME/.p10k.zsh"
+    run_cmd cp "conf/.zshrc" "$TARGET_HOME"
+    run_cmd cp "conf/.p10k.zsh" "$TARGET_HOME/.p10k.zsh"
 
-    if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+    if [[ ! -d "$TARGET_HOME/.oh-my-zsh" ]]; then
         log INFO "Installing oh-my-zsh"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
     fi
 
-    ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+    ZSH_CUSTOM="${ZSH_CUSTOM:-$TARGET_HOME/.oh-my-zsh/custom}"
 
     # Install zsh-autosuggestions
     run_cmd git clone \
@@ -44,7 +44,7 @@ alacritty() {
     log INFO "Install alacritty terminal"
     run_cmd apt install -y alacritty
     log INFO "Setup alacritty theme"
-    local dst_dir="$HOME/.config/alacritty"
+    local dst_dir="$TARGET_HOME/.config/alacritty"
     run_cmd cp -r "conf/alacritty" "$dst_dir"
 }
 
