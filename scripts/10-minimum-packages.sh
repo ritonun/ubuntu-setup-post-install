@@ -99,7 +99,6 @@ full_package_install() {
     run_cmd apt install -y 7zip \
     7zip \
     aria2 \
-    curseforge \
     fastfetch \
     ffmpeg \
     ffmpegthumbnailer \
