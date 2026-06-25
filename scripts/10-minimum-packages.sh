@@ -71,11 +71,6 @@ zed_install() {
     run_cmd curl -f https://zed.dev/install.sh | run_cmd sh
 }
 
-code_install() {
-    log INFO "Install snap VsCode"
-    run_cmd snap install --classic code
-}
-
 full_flatpak_install() {
     log INFO "Install ArduinoIDE v2"
     run_cmd flatpak install -y flathub cc.arduino.IDE2
@@ -104,7 +99,6 @@ full_package_install() {
     run_cmd apt install -y 7zip \
     7zip \
     aria2 \
-    code \
     curseforge \
     fastfetch \
     ffmpeg \
@@ -136,6 +130,28 @@ full_package_install() {
     python3-dev
 }
 
+vscode_install() {
+    log INFO "Install VS Code"
+    run_cmd apt install -y wget gpg
+
+    if [[ ! -f /usr/share/keyrings/microsoft.gpg ]]; then
+        run_cmd bash -c \
+            'wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor -o /usr/share/keyrings/microsoft.gpg'
+    fi
+
+    run_cmd tee /etc/apt/sources.list.d/vscode.sources > /dev/null/ <<'EOF'
+Types: deb
+URIs: https://packages.microsoft.com/repos/code
+Suites: stable
+Components: main
+Architectures: amd64,arm64,armhf
+Signed-By: /usr/share/keyrings/microsoft.gpg
+EOF
+
+    run_cmd apt update
+    run_cmd apt install -y code
+}
+
 system_update
 minimal_packages
 full_package_install
@@ -143,5 +159,5 @@ setup_flatpak
 rust_install
 pipx_install
 zed_install
-code_install
 full_flatpak_install
+vscode_install
