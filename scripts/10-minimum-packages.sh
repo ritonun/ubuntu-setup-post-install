@@ -117,16 +117,13 @@ full_package_install() {
 
     log INFO "Install dev packages"
     run_cmd apt install -y build-essential \
-    g++ \
     cmake \
     pkg-config \
+    g++ \
     clang \
-    libclang-dev \
     lld \
-    libgl1-mesa-dev \
-    libglu1-mesa-dev \
-    libsdl12-dev \
-    python3-dev
+    python3-dev \
+    libgl1-mesa-dev
 }
 
 vscode_install() {
